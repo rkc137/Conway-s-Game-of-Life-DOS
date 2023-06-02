@@ -26,12 +26,8 @@ int main()
 
     bool map[X][Y], _map[X][Y];
     for(int y = 0; y < Y; y++)
-    {
         for(int x = 0; x < X; x++)
-        {
             _map[x][y] = map[x][y] = rand() % 2;
-        }
-    }
 
     int delay = 50;
     for(int i = 0; !shuttingdown(); i++)
@@ -77,22 +73,15 @@ void logic(bool _map[], bool map[], int X, int Y)
         {
             int count_neighbours = -_map[x * Y + y];
             for(int i = -1; i < 2; i++)
-            {
                 for(int j = -1; j < 2;j++)
-                {
                     count_neighbours += _map[(x - i) * Y + y - j];
-                }
-            }
+
             map[x * Y + y] = (count_neighbours == 3 || (count_neighbours == 2 && _map[x * Y + y] == 1));
         }
     }
     for(int y = 0; y < Y; y++)
-    {
         for(int x = 0; x < X; x++)
-        {
             _map[x * Y + y] = map[x * Y + y];
-        }
-    }
 }
 
 void output(bool map[], int X, int Y)
@@ -104,16 +93,9 @@ void output(bool map[], int X, int Y)
         break;
     case rainbow:
         setcolor(color++ % 215 + 16);
-        break;
     }
     for(int y = 0; y < Y; y++)
-    {
         for(int x = 0; x < X; x++)
-        {
             if(map[x * Y + y])
-            {
                 sqr(x, y);
-            }
-        }
-    }
 }
